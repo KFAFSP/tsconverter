@@ -16,7 +16,7 @@ namespace TibSunLegacy.FileFormats.Vxl
 
         public VxlTransformation()
         {
-            this.FMatrix = AffineFltMatrix.Identitiy;
+            this.FMatrix = AffineFltMatrix.Identity;
         }
 
         public void Assign(VxlTransformation AOther)
