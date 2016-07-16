@@ -1,8 +1,9 @@
 using System;
 using System.IO;
 
+using FMath.Linear.Numeric;
+
 using TibSunLegacy.Data;
-using TibSunLegacy.Math.Numeric;
 using TibSunLegacy.Util;
 
 namespace TibSunLegacy.FileFormats.Vxl
@@ -14,13 +15,13 @@ namespace TibSunLegacy.FileFormats.Vxl
 
         private readonly VxlTransformation FTransformation;
         private readonly VxlBounds FBounds;
-        private readonly Vec3Int FSize;
+        private readonly Vector3Int FSize;
 
         public VxlLimbTail()
         {
             this.FTransformation = new VxlTransformation();
             this.FBounds = new VxlBounds();
-            this.FSize = new Vec3Int();
+            this.FSize = new Vector3Int();
         }
 
         #region IPersistable
@@ -67,7 +68,7 @@ namespace TibSunLegacy.FileFormats.Vxl
         {
             get { return this.FBounds; }
         }
-        public Vec3Int Size
+        public Vector3Int Size
         { 
             get { return this.FSize; } 
         }

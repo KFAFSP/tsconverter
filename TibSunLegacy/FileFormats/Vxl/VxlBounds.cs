@@ -1,8 +1,9 @@
 using System;
 using System.IO;
 
+using FMath.Linear.Numeric;
+
 using TibSunLegacy.Data;
-using TibSunLegacy.Math;
 using TibSunLegacy.Util;
 
 namespace TibSunLegacy.FileFormats.Vxl
@@ -11,13 +12,13 @@ namespace TibSunLegacy.FileFormats.Vxl
         IPersistable,
         IAssignable<VxlBounds>
     {
-        private readonly Vec3Flt FMinimum;
-        private readonly Vec3Flt FMaximum;
+        private readonly Vector3Flt FMinimum;
+        private readonly Vector3Flt FMaximum;
 
         public VxlBounds()
         {
-            this.FMinimum = new Vec3Flt();
-            this.FMaximum = new Vec3Flt();
+            this.FMinimum = new Vector3Flt();
+            this.FMaximum = new Vector3Flt();
         }
 
         public void Assign(VxlBounds AFrom)
@@ -49,11 +50,11 @@ namespace TibSunLegacy.FileFormats.Vxl
         }
         #endregion
 
-        public Vec3Flt Minimum
+        public Vector3Flt Minimum
         {
             get { return this.FMinimum; }
         }
-        public Vec3Flt Maximum
+        public Vector3Flt Maximum
         {
             get { return this.FMaximum; }
         }

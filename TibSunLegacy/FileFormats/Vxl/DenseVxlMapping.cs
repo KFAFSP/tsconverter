@@ -1,4 +1,4 @@
-﻿using TibSunLegacy.Math;
+﻿using FMath.Linear.Numeric;
 
 namespace TibSunLegacy.FileFormats.Vxl
 {
@@ -15,22 +15,22 @@ namespace TibSunLegacy.FileFormats.Vxl
             this.FVoxelCount = 0;
         }
 
-        protected override void OnAdded(Vec3Int ACoords)
+        protected override void OnAdded(Vector3Int ACoords)
         {
             this.FVoxelCount++;
             base.OnAdded(ACoords);
         }
-        protected override void OnRemoved(Vec3Int ACoords)
+        protected override void OnRemoved(Vector3Int ACoords)
         {
             this.FVoxelCount--;
             base.OnRemoved(ACoords);
         }
 
-        protected override VxlVoxel DoGet(Vec3Int ACoords)
+        protected override VxlVoxel DoGet(Vector3Int ACoords)
         {
             return this.FMapping[ACoords.X, ACoords.Y, ACoords.Z];
         }
-        protected override bool DoSet(Vec3Int ACoords, VxlVoxel AVoxel)
+        protected override bool DoSet(Vector3Int ACoords, VxlVoxel AVoxel)
         {
             VxlVoxel vvOld = this.FMapping[ACoords.X, ACoords.Y, ACoords.Z];
             this.FMapping[ACoords.X, ACoords.Y, ACoords.Z] = AVoxel;

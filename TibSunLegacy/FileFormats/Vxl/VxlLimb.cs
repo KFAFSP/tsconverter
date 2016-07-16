@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-using TibSunLegacy.Math.Numeric;
+﻿using FMath.Linear.Numeric;
 
 namespace TibSunLegacy.FileFormats.Vxl
 {
@@ -21,7 +18,7 @@ namespace TibSunLegacy.FileFormats.Vxl
             this.FBounds = new VxlBounds();
             this.NormalType = VxlNormalType.Ambiguous;
         }
-        public VxlLimb(uint ANumber, IVector3Int ASize)
+        public VxlLimb(uint ANumber, Vector3Int ASize)
             : this(ANumber)
         {
             this.FMapping = VxlMapping.New(ASize);

@@ -1,6 +1,6 @@
 using System;
 
-using TibSunLegacy.Math;
+using FMath.Linear.Numeric;
 
 namespace TibSunLegacy.FileFormats.Vxl
 {
@@ -13,16 +13,16 @@ namespace TibSunLegacy.FileFormats.Vxl
             Removed = 2
         }
 
-        private readonly Vec3Int FCoords;
+        private readonly Vector3Int FCoords;
         private readonly ChangeType FChange;
 
-        public VxlMappingChangedEventArgs(Vec3Int ACoords, ChangeType AChange)
+        public VxlMappingChangedEventArgs(Vector3Int ACoords, ChangeType AChange)
         {
             this.FCoords = ACoords;
             this.FChange = AChange;
         }
 
-        public Vec3Int Coords
+        public Vector3Int Coords
         {
             get { return this.FCoords; }
         }

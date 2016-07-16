@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-using TibSunLegacy.Math;
+using FMath.Linear.Numeric;
 
 namespace TibSunLegacy.FileFormats.Vxl
 {
@@ -12,7 +12,7 @@ namespace TibSunLegacy.FileFormats.Vxl
         public const uint C_MaxDenseVolume = VxlMapping.C_MaxDenseMemSize/2;
 
         #region Static factory methods
-        public static VxlMapping New(Vec3Int ASize)
+        public static VxlMapping New(Vector3Int ASize)
         {
             if (ASize.Aggregate(1, (AAccu, AComponent) => AAccu*AComponent) > VxlMapping.C_MaxDenseVolume)
                 return new SparseVxlMapping(ASize.X, ASize.Y, ASize.Z);
@@ -21,7 +21,7 @@ namespace TibSunLegacy.FileFormats.Vxl
         }
         #endregion
 
-        private readonly Vec3Int FDimension;
+        private readonly Vector3Int FDimension;
 
         public event EventHandler<VxlMappingChangedEventArgs> Changed;
 
@@ -34,32 +34,32 @@ namespace TibSunLegacy.FileFormats.Vxl
             if (ADepth < 0 || ADepth > 256)
                 throw new ArgumentOutOfRangeException("ADepth");
 
-            this.FDimension = new Vec3Int(AWidth, AHeight, ADepth);
+            this.FDimension = new Vector3Int(AWidth, AHeight, ADepth);
         }
 
-        protected virtual void OnAdded(Vec3Int ACoords)
+        protected virtual void OnAdded(Vector3Int ACoords)
         {
             EventHandler<VxlMappingChangedEventArgs> ehHandler = this.Changed;
             if (ehHandler != null)
                 ehHandler(this, new VxlMappingChangedEventArgs(ACoords, VxlMappingChangedEventArgs.ChangeType.Added));
         }
-        protected virtual void OnRemoved(Vec3Int ACoords)
+        protected virtual void OnRemoved(Vector3Int ACoords)
         {
             EventHandler<VxlMappingChangedEventArgs> ehHandler = this.Changed;
             if (ehHandler != null)
                 ehHandler(this, new VxlMappingChangedEventArgs(ACoords, VxlMappingChangedEventArgs.ChangeType.Removed));
         }
-        protected virtual void OnModified(Vec3Int ACoords)
+        protected virtual void OnModified(Vector3Int ACoords)
         {
             EventHandler<VxlMappingChangedEventArgs> ehHandler = this.Changed;
             if (ehHandler != null)
                 ehHandler(this, new VxlMappingChangedEventArgs(ACoords, VxlMappingChangedEventArgs.ChangeType.Modified));
         }
 
-        protected abstract VxlVoxel DoGet(Vec3Int ACoords);
-        protected abstract bool DoSet(Vec3Int ACoords, VxlVoxel AVoxel);
+        protected abstract VxlVoxel DoGet(Vector3Int ACoords);
+        protected abstract bool DoSet(Vector3Int ACoords, VxlVoxel AVoxel);
 
-        public VxlVoxel Get(Vec3Int ACoords)
+        public VxlVoxel Get(Vector3Int ACoords)
         {
             if (ACoords[0] < 0 || ACoords[0] >= this.FDimension[0]
                 || ACoords[1] < 0 || ACoords[1] >= this.FDimension[1]
@@ -68,7 +68,7 @@ namespace TibSunLegacy.FileFormats.Vxl
 
             return this.DoGet(ACoords);
         }
-        public bool Set(Vec3Int ACoords, VxlVoxel AVoxel)
+        public bool Set(Vector3Int ACoords, VxlVoxel AVoxel)
         {
             if (ACoords[0] < 0 || ACoords[0] >= this.FDimension[0]
                 || ACoords[1] < 0 || ACoords[1] >= this.FDimension[1]
@@ -91,7 +91,7 @@ namespace TibSunLegacy.FileFormats.Vxl
 
         public abstract void Clear();
 
-        public Vec3Int Dimension
+        public Vector3Int Dimension
         {
             get { return this.FDimension; }
         }

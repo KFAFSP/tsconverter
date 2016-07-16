@@ -1,6 +1,6 @@
-using TibSunLegacy.Math.Numeric;
+using FMath.Linear.Numeric;
 
 namespace TibSunLegacy.FileFormats.Vxl
 {
-    public delegate VxlLimb VxlLimbFactory(uint ANumber, Vec3Int ASize);
+    public delegate VxlLimb VxlLimbFactory(uint ANumber, Vector3Int ASize);
 }

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 
-using TibSunLegacy.Math;
+using FMath.Linear.Numeric;
+
 using TibSunLegacy.Util;
 
 namespace TibSunLegacy.FileFormats.Vxl
@@ -137,7 +138,7 @@ namespace TibSunLegacy.FileFormats.Vxl
                     for (byte bOffset = 0; bOffset < bCount; bOffset++)
                     {
                         vlLimb.Mapping.Set(
-                            new Vec3Int(X, Y, Z),
+                            new Vector3Int(X, Y, Z),
                             new VxlVoxel(this.FStream.SafeReadByte(), this.FStream.SafeReadByte()));
                         Y++;
                     }

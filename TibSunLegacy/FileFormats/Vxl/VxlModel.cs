@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-using TibSunLegacy.Math;
+using FMath.Linear.Numeric;
 
 namespace TibSunLegacy.FileFormats.Vxl
 {
@@ -30,7 +30,7 @@ namespace TibSunLegacy.FileFormats.Vxl
             this.FLimbs = new Dictionary<uint, VxlLimb>();
         }
 
-        public VxlLimb AddLimb(uint ANumber, Vec3Int ASize)
+        public VxlLimb AddLimb(uint ANumber, Vector3Int ASize)
         {
             VxlLimb vlLimb = new VxlLimb(ANumber, ASize);
             this.AddLimb(vlLimb);

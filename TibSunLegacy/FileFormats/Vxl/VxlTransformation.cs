@@ -1,8 +1,9 @@
 using System;
 using System.IO;
 
+using FMath.Linear.Numeric;
+
 using TibSunLegacy.Data;
-using TibSunLegacy.Math;
 using TibSunLegacy.Util;
 
 namespace TibSunLegacy.FileFormats.Vxl
@@ -11,11 +12,11 @@ namespace TibSunLegacy.FileFormats.Vxl
         IPersistable,
         IAssignable<VxlTransformation>
     {
-        private readonly MatAffFlt FMatrix;
+        private readonly AffineFltMatrix FMatrix;
 
         public VxlTransformation()
         {
-            this.FMatrix = MatAffFlt.Identity;
+            this.FMatrix = AffineFltMatrix.Identitiy;
         }
 
         public void Assign(VxlTransformation AOther)
@@ -38,14 +39,14 @@ namespace TibSunLegacy.FileFormats.Vxl
             if (AStream == null)
                 throw new ArgumentNullException("AStream");
 
-            float fDet = MatAffFlt.Determinant(this.FMatrix);
+            float fDet = AffineFltMatrix.Determinant(this.FMatrix);
             AStream.WriteFloat(fDet);
             for (int I = 0; I < 12; I++)
                 AStream.WriteFloat(this.FMatrix[I/4, I%4]);
         }
         #endregion
 
-        public MatAffFlt Matrix
+        public AffineFltMatrix Matrix
         {
             get { return this.FMatrix; }
         }

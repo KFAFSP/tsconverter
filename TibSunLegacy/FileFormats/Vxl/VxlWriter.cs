@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 
-using TibSunLegacy.Math.Numeric;
+using FMath.Linear.Numeric;
+
 using TibSunLegacy.Util;
 
 namespace TibSunLegacy.FileFormats.Vxl
@@ -69,7 +70,7 @@ namespace TibSunLegacy.FileFormats.Vxl
             byte AY = 0;
 
             int iVoxels = 0;
-            Vec3Int vPos = new Vec3Int(AX, 0, AZ);
+            Vector3Int vPos = new Vector3Int(AX, 0, AZ);
             while (vPos.Y < AMapping.Dimension.Y)
             {
                 if (AMapping.Get(vPos).Set)
@@ -139,7 +140,7 @@ namespace TibSunLegacy.FileFormats.Vxl
 
                     this.FStream.WriteByte(bSkip);
                     this.FStream.WriteByte(spProto.Count);
-                    Vec3Int vPos = new Vec3Int(X, spProto.Start, Z);
+                    Vector3Int vPos = new Vector3Int(X, spProto.Start, Z);
                     for (byte bOffset = 0; bOffset < spProto.Count; bOffset++)
                     {
                         VxlVoxel vvVoxel = lpProto.Instance.Mapping.Get(vPos);
